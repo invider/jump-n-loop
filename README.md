@@ -1,2 +1,4 @@
-# jump-n-loop
-Ludum Dare 47 Entry
+# Jump'n Loop
+
+Ludum Dare 47 Jam Entry.
+
