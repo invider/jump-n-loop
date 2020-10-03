@@ -1,11 +1,8 @@
-// default values
 const df = {
+    a: 0,
+    h: 0,
     x: rx(.5),
     y: ry(.5),
-    r: ry(.05),
-    dx: 0,
-    dy: 0,
-    speed: ry(.3),
 }
 
 class Hero {
@@ -15,39 +12,42 @@ class Hero {
         augment(this, st)
     }
 
-    onSpawn() {
-        this.pickRandomDirection()
+    land(planet) {
+        this.surface = true
+        this.a = PI
+        this.h = 0
+        this.__.detach(this)
+        planet.attach(this)
     }
 
-    pickRandomDirection() {
-        const fi = PI/4
-        this.dx = cos(fi) * this.speed
-        this.dy = sin(fi) * this.speed
+    jump(h) {
+        this.h = 30
+    }
+
+    activate(id) {
+        switch(id) {
+            case 5: this.jump(); break; 
+        }
     }
 
     evo(dt) {
-        // move
-        this.x = this.x + this.dx * dt
-        this.y = warp(this.y + this.dy * dt, 0, ry(1))
+        this.a = lib.math.normalizeAngle(
+            this.a + this.__.rotationSpeed * dt)
 
-        // reflect from the screen edges
-        if (this.dx > 0 && this.x > rx(1) - this.r
-                || this.dx < 0 && this.x < this.r) {
-            this.dx *= -1
-        }
-        if (this.dy > 0 && this.y > ry(1) - this.r
-                || this.dy < 0 && this.y < this.r) {
-            this.dy *= -1
+        // gravity
+        if (this.h > 0) {
+            this.h = max(this.h - env.tune.gravity * dt, 0)
         }
     }
 
     draw() {
         save()
-        translate(this.x, this.y)
+        rotate(this.a)
+        translate(0, this.__.r + this.h)
 
-        lineWidth(2)
-        stroke(.52, .5, .5)
-        circle(0, 0, this.r)
+        lineWidth(4)
+        fill(.5, .5, .5)
+        rect(-5, 0, 10, 20)
 
         restore()
     }

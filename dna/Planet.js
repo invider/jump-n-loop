@@ -4,7 +4,7 @@ const df = {
     y: ry(.5),
     r: ry(.1),
     angle: 0,
-    rotationSpeed: TAU,
+    rotationSpeed: .1 * TAU,
 }
 
 class Planet extends sys.LabFrame {
@@ -15,8 +15,28 @@ class Planet extends sys.LabFrame {
         augment(this, st)
     }
 
+    onSpawn() {
+        this.spawn('surface/Body', {
+            name: 'tree1',
+            a: .4,
+        })
+        this.spawn('surface/Body', {
+            name: 'tree2',
+            a: PI,
+        })
+        this.spawn('surface/Body', {
+            name: 'tree3',
+            a: 1.5 * PI,
+        })
+    }
+
     evo(dt) {
         this.angle = lib.math.normalizeAngle(this.angle - this.rotationSpeed * dt)
+
+        for (let i = 0; i < this._ls.length; i++) {
+            const e = this._ls[i]
+            if (e.evo && !e.paused) e.evo(dt)
+        }
     }
 
     draw() {
@@ -28,8 +48,13 @@ class Planet extends sys.LabFrame {
         stroke(.52, .5, .5)
         circle(0, 0, this.r)
 
-        line(0, this.r, 0, this.r + 10)
-        line(0, -this.r, 0, -this.r - 10)
+        line(0, this.r, 0, this.r + 16)
+        line(0, -this.r, 0, -this.r - 8)
+
+        for (let i = 0; i < this._ls.length; i++) {
+            const e = this._ls[i]
+            if (e.draw && !e.hidden) e.draw()
+        }
 
         restore()
     }

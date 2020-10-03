@@ -1,4 +1,3 @@
-
 function handleControl(e) {
     switch(e.code) {
         case 'Minus':
