@@ -1,0 +1,21 @@
+auditok @ git+https://github.com/amsehili/auditok@271fd15dfb7a1e9da9eade6517cb4345eb56f096
+certifi==2020.6.20
+cycler==0.10.0
+essentia==2.1b6.dev234
+kiwisolver==1.2.0
+lab==6.1
+llvmlite==0.34.0
+matplotlib==3.3.2
+numba==0.51.2
+numpy==1.19.2
+Pillow==7.2.0
+pkg-resources==0.0.0
+PyAudio==0.2.11
+pydub==0.24.1
+pyparsing==2.4.7
+python-dateutil==2.8.1
+PyYAML==5.3.1
+scipy==1.5.2
+simplejson==3.17.2
+six==1.15.0
+txt2tags==3.7
