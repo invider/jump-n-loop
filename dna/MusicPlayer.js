@@ -22,9 +22,7 @@ class MusicPlayer {
         this.timer = $.res.sfx[this.lvl].currentTime;
         if (res.beats[this.lvl][this.currentJsonPos] <= this.timer) {
             this.currentJsonPos ++;
-            console.log(`beat detected ${this.timer}: ${this.currentJsonPos}`);
-            _$.hero.jump();
-            lab.spawn("Beat")
+            trap("beat");
         }
     }
 
