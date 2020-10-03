@@ -1,6 +1,8 @@
 const df = {
-    a: 0,
+    angle: 0,
     h: 0,
+    ttl: 5,
+    lifeTime: 0
 }
 
 class Body {
@@ -8,17 +10,18 @@ class Body {
     constructor(st) {
         augment(this, df)
         augment(this, st)
-
-        this.aspeed = TAU / RND(4, 12)
     }
 
     evo(dt) {
-        this.a += this.aspeed * dt
+        this.lifeTime += dt;
+        if (this.lifeTime > this.ttl){
+            defer(() => this.__.detach(this))
+        }
     }
 
     draw() {
         save()
-        rotate(this.a)
+        rotate(this.angle);
         translate(0, this.__.r + this.h)
 
         lineWidth(2)

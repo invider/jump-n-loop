@@ -3,8 +3,7 @@ const df = {
     x: rx(.5),
     y: ry(.5),
     r: ry(.1),
-    angle: 0,
-    rotationSpeed: .1 * TAU,
+    angle: 0
 }
 
 let id = 0
@@ -15,15 +14,16 @@ class Planet extends sys.LabFrame {
         super()
         augment(this, df)
         augment(this, st)
+        this.rotationSpeed = env.tune.rotationSpeed;
     }
 
     onSpawn() {
-        for (let i = 0; i < 7; i++) {
-            this.spawn('surface/Body', {
-                name: 'tree' + (++id),
-                a: rnd(TAU),
-            })
-        }
+        // for (let i = 0; i < 7; i++) {
+        //     this.spawn('surface/Body', {
+        //         name: 'tree' + (++id),
+        //         a: rnd(TAU),
+        //     })
+        // }
     }
 
     evo(dt) {
