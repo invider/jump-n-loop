@@ -12,7 +12,7 @@ class MusicPlayer {
         augment(this, st)
         this.lvl = st.lvl || "lvl1";
         this.beatTimer = new lib.BeatTimer(this.lvl, 0);
-        this.offsetBeatTimer = new lib.BeatTimer(this.lvl, env.tune.spawnOffset);
+        this.offsetBeatTimer = new lib.BeatTimer(this.lvl, env.tune.spawnOffset - env.tune.musicOffset);
     }
 
     onSpawn() {
