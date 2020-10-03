@@ -21,7 +21,7 @@ class Hero {
     }
 
     jump(h) {
-        this.h = 30
+        this.h = 60
     }
 
     activate(id) {
@@ -47,7 +47,7 @@ class Hero {
 
         lineWidth(4)
         fill(.5, .5, .5)
-        rect(-5, 0, 10, 20)
+        rect(-15, 0, 30, 50)
 
         restore()
     }

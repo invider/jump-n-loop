@@ -7,6 +7,8 @@ const df = {
     rotationSpeed: .1 * TAU,
 }
 
+let id = 0
+
 class Planet extends sys.LabFrame {
 
     constructor(st) {
@@ -16,18 +18,12 @@ class Planet extends sys.LabFrame {
     }
 
     onSpawn() {
-        this.spawn('surface/Body', {
-            name: 'tree1',
-            a: .4,
-        })
-        this.spawn('surface/Body', {
-            name: 'tree2',
-            a: PI,
-        })
-        this.spawn('surface/Body', {
-            name: 'tree3',
-            a: 1.5 * PI,
-        })
+        for (let i = 0; i < 7; i++) {
+            this.spawn('surface/Body', {
+                name: 'tree' + (++id),
+                a: rnd(TAU),
+            })
+        }
     }
 
     evo(dt) {

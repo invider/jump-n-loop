@@ -23,7 +23,7 @@ class Body {
 
         lineWidth(2)
         fill(.01, .5, .5)
-        rect(-5, 0, 10, 20)
+        rect(-15, 0, 30, 40)
 
         restore()
     }

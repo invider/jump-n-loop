@@ -1,3 +1,3 @@
 const tune = {
-    gravity: 30,
+    gravity: 80,
 }
