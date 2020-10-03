@@ -21,7 +21,7 @@ class Beat extends sys.LabFrame {
     evo(dt) {
         this.lifetime += dt;
         if (this.lifetime > 0.3){
-            kill(this);
+            defer(() => this.__.detach(this))
         }
     }
 
