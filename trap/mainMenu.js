@@ -6,7 +6,6 @@ function mainMenu() {
         levels.push((i * 10) + '%')
     }
 
-
     menu.selectFrom({
         items: [
             {

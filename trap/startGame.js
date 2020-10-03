@@ -1,4 +1,5 @@
 function startGame() {
+
     const planet = lab.spawn('Planet', {
         name: 'planet',
         x: rx(.5),

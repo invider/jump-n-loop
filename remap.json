@@ -1,0 +1,5 @@
+{
+    "ignorePaths": [
+        "fix/beat_detector"
+    ]
+}
