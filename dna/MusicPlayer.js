@@ -6,23 +6,29 @@ const df = {
 class MusicPlayer {
 
     constructor(st) {
-        this.timer = 0;
-        this.currentJsonPos = 0;
+        st = st || {};
+        this.started = 0;
         augment(this, df)
         augment(this, st)
-        this.lvl = "lvl1";
+        this.lvl = st.lvl || "lvl1";
+        this.beatTimer = new lib.BeatTimer(this.lvl, 0);
+        this.offsetBeatTimer = new lib.BeatTimer(this.lvl, env.tune.spawnOffset);
     }
 
     onSpawn() {
-        res.sfx.lvl1.play();
     }
-
+    
     evo(dt) {
-        //res.sfx.lvl1.pause();
-        this.timer = $.res.sfx[this.lvl].currentTime;
-        if (res.beats[this.lvl][this.currentJsonPos] <= this.timer) {
-            this.currentJsonPos ++;
-            trap("beat");
+        if (!this.started){
+            res.sfx[this.lvl].play();
+            this.started = true;
+        } else {
+            if (this.offsetBeatTimer.evo(dt)){
+                trap("spawnObstacle");
+            }
+            if (this.beatTimer.evo(dt)){
+                trap("beat");
+            }
         }
     }
 

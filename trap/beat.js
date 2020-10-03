@@ -1,4 +1,4 @@
 function beat(e) {
-    _$.hero.jump();
+    //_$.hero.jump();
     lab.spawn("Beat")
 }
