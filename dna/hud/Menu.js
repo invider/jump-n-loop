@@ -35,16 +35,30 @@ class Menu {
         }
     }
 
+    sync() {
+        this.items.forEach(item => {
+            if (item.sync) item.sync()
+        })
+    }
+
+    syncIn() {
+        this.items.forEach(item => {
+            if (item.syncIn) item.syncIn()
+        })
+    }
+
     show() {
         this.hidden = false
         this.state = ACTIVE
         this.lastTouch = Date.now()
+        this.syncIn()
         lab.control.player.bindAll(this)
     }
 
     hide() {
         this.hidden = true
         this.state = DISABLED
+        this.sync()
         lab.control.player.unbindAll(this)
     }
 
@@ -58,7 +72,6 @@ class Menu {
                 if (item.load) item.load()
             }
         })
-
         this.slideToActiveItem()
         this.show()
     }
@@ -108,13 +121,31 @@ class Menu {
         const item = this.currentItem()
         if (isSwitch(item)) {
             item.current --
-            if (item.current < 0) item.current = item.length - 1
-            if (this.onSwitch) this.onSwitch(item, this.current)
+            if (item.current < 0) {
+                if (item.limit) {
+                    item.current = 0
+                    return
+                } else {
+                    item.current = item.length - 1
+                }
+            }
+            if (item.onSwitch) item.onSwitch(item, this.current)
+            else if (this.onSwitch) this.onSwitch(item, this.current)
+            if (item.sync) item.sync()
             sfx('apply', env.mixer.level.switch)
+
         } else if (isOption(item)) {
             item.current --
-            if (item.current < 0) item.current = item.options.length - 1
-            if (this.onSwitch) this.onSwitch(item, this.current)
+            if (item.current < 0) {
+                if (item.limit) {
+                    item.current = 0
+                    return
+                } else {
+                    item.current = item.options.length - 1
+                }
+            }
+            if (item.onSwitch) item.onSwitch(item, this.current)
+            else if (this.onSwitch) this.onSwitch(item, this.current)
             if (item.sync) item.sync()
             sfx('apply', env.mixer.level.switch)
         }
@@ -126,13 +157,31 @@ class Menu {
         const item = this.currentItem()
         if (isSwitch(item)) {
             item.current ++
-            if (item.current >= item.length) item.current = 0
-            if (this.onSwitch) this.onSwitch(item, this.current)
+            if (item.current >= item.length) {
+                if (item.limit) {
+                    item.current = item.length - 1
+                    return
+                } else {
+                    item.current = 0
+                }
+            }
+            if (item.onSwitch) item.onSwitch(item, this.current)
+            else if (this.onSwitch) this.onSwitch(item, this.current)
+            if (item.sync) item.sync()
             sfx('apply', env.mixer.level.switch)
+
         } else if (isOption(item)) {
             item.current ++
-            if (item.current >= item.options.length) item.current = 0
-            if (this.onSwitch) this.onSwitch(item, this.current)
+            if (item.current >= item.options.length) {
+                if (item.limit) {
+                    item.current = item.options.length - 1
+                    return
+                } else {
+                    item.current = 0
+                }
+            }
+            if (item.onSwitch) item.onSwitch(item, this.current)
+            else if (this.onSwitch) this.onSwitch(item, this.current)
             if (item.sync) item.sync()
             sfx('apply', env.mixer.level.switch)
         }
@@ -145,7 +194,7 @@ class Menu {
             this.right()
         } else {
             if (item.onSelect) {
-                item.onSelect()
+                item.onSelect(this)
                 sfx('use', env.mixer.level.apply)
             } else if (this.onSelect) {
                 this.onSelect(item)

@@ -1,3 +1,0 @@
-function game() {
-    trap('startGame')
-}
