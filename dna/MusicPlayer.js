@@ -28,7 +28,7 @@ class MusicPlayer {
                 trap("beat");
             }
             if (!this.started){
-                res.sfx[this.lvl].volume = env.sfxVolume
+                res.sfx[this.lvl].volume = env.sfxVolume || .7
                 res.sfx[this.lvl].play();
                 this.started = true;
             } 

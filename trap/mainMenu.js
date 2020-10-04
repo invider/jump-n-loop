@@ -29,25 +29,14 @@ function mainMenu() {
                 limit: true,
                 sync: function() {
                     const level = limit(this.current/10, 0, 1)
-                    log('setting volume: ' + level)
                     env.sfxVolume = level
                 },
                 syncIn: function() {
                     env.sfxVolume = env.sfxVolume || env.tune.defaultVolume
                     const level = floor(env.sfxVolume * 10)
-                    log('level: ' + level)
                     this.current = level
                 },
             },
         ],
-
-        onSelect: function(action) {
-            log('selected ' + action)
-        },
-
-        onSwitch: function(switched, i) {
-            log('#' + i + ': switched to ' + switched.current)
-        }, 
     })
-
 }

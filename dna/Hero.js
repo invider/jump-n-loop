@@ -1,8 +1,10 @@
 const df = {
-    a: 0,
+    name: 'hero',
+    angle: 0,
     h: 0,
     x: rx(.5),
     y: ry(.5),
+    hits: 5,
 }
 
 class Hero {
@@ -14,25 +16,31 @@ class Hero {
 
     land(planet) {
         this.surface = true
-        this.a = PI
+        this.angle = PI
         this.h = 0
         this.__.detach(this)
         planet.attach(this)
     }
 
     jump(h) {
-        this.h = 60
+        this.h = h
     }
 
     activate(id) {
         switch(id) {
-            case 5: this.jump(); break; 
+            case 1: this.jump(env.tune.jump); break; 
         }
     }
 
+    hit(body) {
+        this.lastHit = body
+        this.jump(env.tune.hitJump)
+    }
+
+
     evo(dt) {
-        this.a = lib.math.normalizeAngle(
-            this.a + this.__.rotationSpeed * dt)
+        this.angle = lib.math.normalizeAngle(
+            this.angle + this.__.rotationSpeed * dt)
 
         // gravity
         if (this.h > 0) {
@@ -42,12 +50,12 @@ class Hero {
 
     draw() {
         save()
-        rotate(this.a)
+        rotate(this.angle)
         translate(0, this.__.r + this.h)
 
         lineWidth(4)
         fill(.5, .5, .5)
-        rect(-15, 0, 30, 50)
+        rect(-10, 0, 20, 40)
 
         restore()
     }

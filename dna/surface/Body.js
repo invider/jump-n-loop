@@ -1,8 +1,11 @@
 const df = {
     angle: 0,
     h: 0,
-    ttl: 5,
-    lifeTime: 0
+    angleWidth: .02,
+    bodyHeight: 10,
+
+    // ttl: 3.3, // just after touch
+    ttl: 6.5,
 }
 
 class Body {
@@ -12,9 +15,19 @@ class Body {
         augment(this, st)
     }
 
+    touch(hero) {
+        if (hero.angle >= this.angle - this.angleWidth
+                    && hero.angle <= this.angle + this.angleWidth
+                    && hero.h <= this.bodyHeight
+                    && hero.lastHit !== this) {
+            // collision!
+            hero.hit(this)
+        }
+    }
+
     evo(dt) {
-        this.lifeTime += dt;
-        if (this.lifeTime > this.ttl){
+        this.ttl -= dt
+        if (this.ttl < 0){
             defer(() => this.__.detach(this))
         }
     }
@@ -26,7 +39,7 @@ class Body {
 
         lineWidth(2)
         fill(.01, .5, .5)
-        rect(-15, 0, 30, 40)
+        triangle(0, 15, -7, 0, 7, 0)
 
         restore()
     }

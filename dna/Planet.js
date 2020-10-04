@@ -26,6 +26,16 @@ class Planet extends sys.LabFrame {
         // }
     }
 
+    collide(dt) {
+        const hero = this.hero
+        if (!hero) return
+
+        for (let i = 0; i < this._ls.length; i++) {
+            const e = this._ls[i]
+            if (e.touch) e.touch(hero)
+        }
+    }
+
     evo(dt) {
         this.angle = lib.math.normalizeAngle(this.angle - this.rotationSpeed * dt)
 
@@ -33,6 +43,7 @@ class Planet extends sys.LabFrame {
             const e = this._ls[i]
             if (e.evo && !e.paused) e.evo(dt)
         }
+        this.collide(dt)
     }
 
     draw() {
