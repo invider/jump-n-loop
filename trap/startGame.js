@@ -11,8 +11,8 @@ function startGame(options) {
         name: 'planet',
         x: 0,
         y: 0,
-        r: ry(.24),
-        //r: ry(.4),
+        //r: ry(.24),
+        r: ry(.4),
         options: options 
     })
     _$.planet = planet

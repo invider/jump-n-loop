@@ -1,13 +1,16 @@
+const WAITING = 0
+const PLAYING = 1
+const STOPED = 2
+
 // default values
 const df = {
-    
 }
 
 class MusicPlayer {
 
     constructor(st) {
         st = st || {};
-        this.started = false;
+        this.status = WAITING;
         this.name = "musicPlayer";
         augment(this, df)
         augment(this, st)
@@ -23,7 +26,7 @@ class MusicPlayer {
         if (!this.beat) return
         this.beat.pause()
         this.beat.currentTime = 0
-        //this.started = false
+        this.status = STOPED
     }
 
     start() {
@@ -34,22 +37,22 @@ class MusicPlayer {
         beat.currentTime = 0
         beat.play();
         this.beat = beat
-        this.started = true;
+        this.status = PLAYING
     }
     
     evo(dt) {
-        if (this.offsetBeatTimer.evo(dt)){
+        if (this.status < STOPED && this.offsetBeatTimer.evo(dt)){
             if (!_$.planet.isRecording()){
                 trap("spawnObstacle");
             }
         }
 
-        if (this.offsetBeatTimer.timer >= env.tune.spawnOffset - env.tune.musicOffset){
+        if (this.status < STOPED && this.offsetBeatTimer.timer >= env.tune.spawnOffset - env.tune.musicOffset){
             if (this.beatTimer.evo(dt)){
                 trap("beat");
             }
 
-            if (!this.started) this.start()
+            if (this.status === WAITING) this.start()
             /*
             if (!this.started){
                 // start the beat
