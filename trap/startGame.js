@@ -17,10 +17,13 @@ function startGame(options) {
     })
     _$.planet = planet
 
-    const hero = lab.spawn('Hero')
+    const hero = lab.spawn('Hero', {
+        hits: env.tune.hits[options.difficulty],
+    })
     _$.hero = hero
     hero.land(planet)
     cam.target = hero.target
+    log('hero hits: ' + hero.hits)
 
     if (_$.musicPlayer) _$.musicPlayer.stop()
     _$.musicPlayer = lab.spawn('MusicPlayer')

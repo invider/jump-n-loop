@@ -21,6 +21,7 @@ function mainMenu() {
                 title: 'difficulty',
                 id: 'difficulty',
                 options: [ 'easy', 'normal', 'hard', 'hardcore' ],
+                current: 1,
                 limit: true,
             },
             {
