@@ -213,11 +213,11 @@ class Menu {
     activate(action) {
         this.lastTouch = Date.now()
         switch(action) {
-            case 1: this.prev(); break;
-            case 2: this.left(); break;
-            case 3: this.next(); break;
-            case 4: this.right(); break;
-            case 5: this.select(); break;
+            case 2: this.prev(); break;
+            case 3: this.left(); break;
+            case 4: this.next(); break;
+            case 5: this.right(); break;
+            case 1: this.select(); break;
             case 6: this.back(); break;
         }
     }

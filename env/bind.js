@@ -1,10 +1,9 @@
 const keyboard = [
-    [ 'Space' ],
+    [ 'Space', 'ArrowUp', 'ArrowLeft', 'ArrowDown', 'ArrowRight' ],
     [ 'KeyX' ],
     [ 'ShiftRight' ],
     [ 'ShiftLeft'  ],
     [ 'Enter' ],
-    [ 'ArrowUp' ],
 ]
 
 const keyMap = {}
