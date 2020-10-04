@@ -45,19 +45,19 @@ def avg(data, mk):
     return d1
 
 @numba.jit()
-def detectPeaks(d1, d2):
+def detectPeaks(d1):
     isPeak = []
-    prev = 0
-    for i in range(len(d1)):
-        time = i * secPerSample
-        av1 = d1[i]
-        av2 = d2[i]
-        diff = av1 - av2
-        if diff > av2 * multiplier_threshold and diff > peaks_threshold and time - minDelay > prev:
-            isPeak.append(diff)
-            prev = time
+    trend = 0
+    isPeak.append(0)
+    for i in range(1, len(d1)):
+        av = d1[i]
+        prev = d1[i-1]
+        if av > prev and not trend:
+            isPeak.append(10000)
         else:
             isPeak.append(0)
+
+        trend = av > prev
     return isPeak
 
 @numba.jit()
@@ -65,8 +65,9 @@ def analyze(data):
     data = [numba.float64(k[0]) for k in data]
     d1 = avg(data, quick_avg_k)
     d2 = avg(d1, long_avg_k)
-    peaks = detectPeaks(d1, d2)
-    return d1, d2, peaks
+    d3 = avg(d2, quick_avg_k)
+    peaks = detectPeaks(d3)
+    return d1, d3, peaks
 
 
 d1, d2, peaks = analyze(data)
@@ -78,7 +79,6 @@ def showPlot():
     plt.plot(d2)
     plt.plot(peaks)
     plt.show()
-
 
 print("saving peaks")
 f = open(baseName + ".txt", "w+")
@@ -94,5 +94,3 @@ open(baseName + ".json", "w+").write(json.dumps(res))
 
 if args.show:
     showPlot()
-
-

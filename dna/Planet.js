@@ -38,7 +38,9 @@ class Planet extends sys.LabFrame {
             if (e.touch) e.touch(hero)
         }
     }
-
+    isRecording(){
+        return this.options.mode == "record";
+    }
     evo(dt) {
         this.angle = lib.math.normalizeAngle(this.angle - this.rotationSpeed * dt)
 
