@@ -1,7 +1,7 @@
 const tune = {
     defaultVolume: .7,
 
-    gravity: 120,
+    gravity: 160,
     jump: 60,
     hitJump: 90,
 

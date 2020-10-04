@@ -4,9 +4,11 @@ const df = {
     h: 0,
     x: rx(.5),
     y: ry(.5),
+    w: 20,
     hits: 5,
     jumps: 0,
     color: hsl(.55, .5, .5),
+    parts: hsl(.6, .5, .6),
     blood: hsl(0.97, .82, .47),
 }
 
@@ -48,7 +50,7 @@ class Hero {
         this.lastHit = body
         this.jumps = 0
 
-        lib.vfx.ouch(lab.cam, this.x, this.y, hsl(.4, .5, .5))
+        lib.vfx.ouch(lab.cam, this.x, this.y, this.parts)
 
         if (this.hits <= 0) {
             this.kill()
@@ -58,6 +60,15 @@ class Hero {
             //lib.vfx.jet(lab.cam, this.x, this.y, hsl(.55, .5, .5))
             // TODO play hit sfx
         }
+    }
+
+    touchdown() {
+        lib.vfx.touchdown(lab.cam, this.x + this.w/2, this.y,
+            this.__.surfaceColor, 1)
+        lib.vfx.touchdown(lab.cam, this.x, this.y,
+            this.__.surfaceColor, .5)
+        lib.vfx.touchdown(lab.cam, this.x - this.w/2, this.y,
+            this.__.surfaceColor, .3)
     }
 
     updateTarget() {
@@ -83,7 +94,10 @@ class Hero {
         // gravity
         if (this.h > 0) {
             this.h = max(this.h - env.tune.gravity * dt, 0)
-            if (this.h === 0) this.jumps = 0
+            if (this.h === 0) {
+                this.jumps = 0
+                this.touchdown()
+            }
         }
 
         this.updateTarget()
@@ -96,7 +110,7 @@ class Hero {
 
         lineWidth(4)
         fill(this.color)
-        rect(-10, 0, 20, 35)
+        rect(-this.w/2, 0, this.w, 35)
 
         restore()
     }

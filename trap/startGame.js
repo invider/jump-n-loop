@@ -23,7 +23,6 @@ function startGame(options) {
     _$.hero = hero
     hero.land(planet)
     cam.target = hero.target
-    log('hero hits: ' + hero.hits)
 
     if (_$.musicPlayer) _$.musicPlayer.stop()
     _$.musicPlayer = lab.spawn('MusicPlayer')
