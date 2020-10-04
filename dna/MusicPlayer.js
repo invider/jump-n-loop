@@ -8,14 +8,15 @@ class MusicPlayer {
     constructor(st) {
         st = st || {};
         this.started = 0;
+        this.name = "musicPlayer";
         augment(this, df)
         augment(this, st)
         this.lvl = st.lvl || "lvl1";
     }
 
     onSpawn() {
-        this.beatTimer = new lib.BeatTimer({lvl: this.lvl, record: _$.planet.isRecording()});
-        this.offsetBeatTimer = new lib.BeatTimer({lvl: this.lvl, record: _$.planet.isRecording()});
+        this.beatTimer = new lib.BeatTimer({lvl: this.lvl, recordMode: _$.planet.isRecording()});
+        this.offsetBeatTimer = new lib.BeatTimer({lvl: this.lvl, recordMode: _$.planet.isRecording()});
     }
     
     evo(dt) {

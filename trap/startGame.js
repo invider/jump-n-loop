@@ -22,7 +22,7 @@ function startGame(options) {
     hero.land(planet)
     cam.target = hero.target
 
-    lab.spawn('MusicPlayer')
+    _$.musicPlayer = lab.spawn('MusicPlayer')
 
     lab.control.player.bindAll(hero)
 }
