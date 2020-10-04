@@ -5,6 +5,7 @@ const df = {
     x: rx(.5),
     y: ry(.5),
     hits: 5,
+    jumps: 0,
 }
 
 class Hero {
@@ -23,7 +24,10 @@ class Hero {
     }
 
     jump(h) {
-        this.h = h
+        if (this.jumps > 2) return
+        if (this.jumps > 0) h = h/2
+        this.h += h
+        this.jumps ++
     }
 
     activate(id) {
@@ -33,7 +37,9 @@ class Hero {
     }
 
     hit(body) {
+        this.hits --
         this.lastHit = body
+        this.jumps = 0
         this.jump(env.tune.hitJump)
     }
 
@@ -45,6 +51,7 @@ class Hero {
         // gravity
         if (this.h > 0) {
             this.h = max(this.h - env.tune.gravity * dt, 0)
+            if (this.h === 0) this.jumps = 0
         }
     }
 
