@@ -25,7 +25,7 @@ function startGame(options) {
     cam.target = hero.target
 
     if (_$.musicPlayer) _$.musicPlayer.stop()
-    _$.musicPlayer = lab.spawn('MusicPlayer')
+    _$.musicPlayer = lab.spawn('MusicPlayer', options)
 
     lab.control.player.bindAll(hero)
 }
