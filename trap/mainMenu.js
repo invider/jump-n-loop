@@ -35,7 +35,7 @@ function mainMenu() {
                 option: true,
                 title: 'level',
                 id: 'lvl',
-                options: [ 'lvl1', 'lvl2' ],
+                options: [ 'lvl1', 'lvl2', 'lvl3' ],
                 limit: true
             },
             {
