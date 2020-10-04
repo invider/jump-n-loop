@@ -2,6 +2,7 @@ const ACTIVE = 1
 const DISABLED = 0
 
 const df = {
+    name: 'menu',
     x: rx(.3),
     y: 0,
     w: rx(.4),
@@ -298,8 +299,25 @@ class Menu {
         } else if (isArray(item)) {
             return item[item.current]
         } else if (isObj(item)) {
-            return item.title
+            if (item.option) {
+                return item.options[item.current]
+            } else {
+                return item.title
+            }
         }
+    }
+
+    options() {
+        const map = {}
+        const menu = this
+
+        for (let i = 0; i < this.items.length; i++) {
+            const e = this.items[i]
+            if (e.id) {
+                map[e.id] = menu.selectedValue(i)
+            }
+        }
+        return map
     }
 
     evo(dt) {
