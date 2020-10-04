@@ -48,7 +48,7 @@ class Hero {
     }
 
     hit(body) {
-        this.hits --
+        if (!this.god) this.hits --
         this.lastHit = body
         this.jumps = 0
 
