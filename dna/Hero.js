@@ -13,6 +13,10 @@ class Hero {
     constructor(st) {
         augment(this, df)
         augment(this, st)
+        this.target = {
+            x: 0,
+            y: 0,
+        }
     }
 
     land(planet) {
@@ -43,6 +47,12 @@ class Hero {
         this.jump(env.tune.hitJump)
     }
 
+    updateTarget() {
+        const a = this.__.angle + this.angle + PI/2
+        const r = this.__.r - ry(.2)
+        this.target.x = this.__.x + cos(a) * r
+        this.target.y = this.__.y + sin(a) * r
+    }
 
     evo(dt) {
         this.angle = lib.math.normalizeAngle(
@@ -53,6 +63,8 @@ class Hero {
             this.h = max(this.h - env.tune.gravity * dt, 0)
             if (this.h === 0) this.jumps = 0
         }
+
+        this.updateTarget()
     }
 
     draw() {

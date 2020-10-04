@@ -62,7 +62,6 @@ class Planet extends sys.LabFrame {
             const e = this._ls[i]
             if (e.draw && !e.hidden) e.draw()
         }
-
         restore()
     }
 }

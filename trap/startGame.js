@@ -1,15 +1,27 @@
 function startGame() {
 
-    const planet = lab.spawn('Planet', {
-        name: 'planet',
-        x: rx(.5),
-        y: ry(.5),
-        r: ry(.24),
+    const cam = lab.spawn('SlideCamera', {
+        name: 'cam',
+        speed: ry(.5),
+        x: 0,
+        y: 0,
     })
+
+    const planet = cam.spawn('Planet', {
+        name: 'planet',
+        x: 0,
+        y: 0,
+        //r: ry(.24),
+        r: ry(.4),
+        //r: ry(1),
+    })
+    _$.planet = planet
 
     const hero = lab.spawn('Hero')
     _$.hero = hero
     hero.land(planet)
+    cam.target = hero.target
+
     lab.spawn('MusicPlayer')
 
     lab.control.player.bindAll(hero)
