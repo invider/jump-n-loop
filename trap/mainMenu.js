@@ -27,7 +27,7 @@ function mainMenu() {
                 option: true,
                 title: 'mode',
                 id: 'mode',
-                options: [ 'record', 'play' ],
+                options: [ 'play', 'record' ],
                 limit: true
             },
             {

@@ -1,0 +1,3 @@
+function gameOver() {
+    trap('mainMenu')
+}

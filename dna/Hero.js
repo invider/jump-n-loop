@@ -102,10 +102,11 @@ class Hero {
     }
 
     kill() {
-        log('KILL')
         this.dead = true
         const hero = this
         defer(() => hero.__.detach(hero))
         lib.vfx.death(lab.cam, this.x, this.y, this.blood)
+
+        trap('gameOver')
     }
 }
