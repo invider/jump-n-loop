@@ -2,7 +2,7 @@ function startGame(options) {
 
     const cam = lab.spawn('SlideCamera', {
         name: 'cam',
-        speed: ry(.5),
+        speed: ry(.2),
         x: 0,
         y: 0,
     })

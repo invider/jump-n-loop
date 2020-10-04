@@ -33,7 +33,7 @@ class MusicPlayer {
     start() {
         // start the beat
         const beat = this.beat
-        beat.volume = env.sfxVolume || .7
+        beat.volume = (env.sfxVolume || .7) * env.mixer.musicLevel
         beat.pause()
         beat.currentTime = 0
         beat.play();

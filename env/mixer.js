@@ -1,4 +1,6 @@
 const mixer = {
+    musicLevel: .7,
+
     jump:       1,
     touchdown:  1,
     hit:        1,
