@@ -34,6 +34,7 @@ class Hero {
         if (this.jumps > 0) h = h/2
         this.h += h
         this.jumps ++
+        lab.music.beatTimer.record();
     }
 
     activate(id) {

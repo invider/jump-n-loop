@@ -1,4 +1,4 @@
-function startGame() {
+function startGame(options) {
 
     const cam = lab.spawn('SlideCamera', {
         name: 'cam',
@@ -13,7 +13,7 @@ function startGame() {
         y: 0,
         //r: ry(.24),
         r: ry(.4),
-        //r: ry(1),
+        options: options 
     })
     _$.planet = planet
 

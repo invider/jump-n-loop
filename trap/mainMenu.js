@@ -11,20 +11,36 @@ function mainMenu() {
             {
                 title: 'new game',
                 onSelect: function(menu) {
-                    menu.hide()
-                    trap('startGame')
+                    menu.hide();
+                    trap('startGame', menu.options());
                 }
             },
             //{ section: true, title: 'difficulty' },
             {
                 option: true,
                 title: 'difficulty',
+                id: 'difficulty',
                 options: [ 'easy', 'normal', 'hard', 'hardcore' ],
                 limit: true,
             },
             {
                 option: true,
+                title: 'mode',
+                id: 'mode',
+                options: [ 'record', 'play' ],
+                limit: true
+            },
+            {
+                option: true,
+                title: 'level',
+                id: 'level',
+                options: [ 'lvl1', 'lvl2' ],
+                limit: true
+            },
+            {
+                option: true,
                 title: 'volume',
+                id: 'volume',
                 options: levels,
                 limit: true,
                 sync: function() {

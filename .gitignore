@@ -12,3 +12,6 @@ dist*
 *.pid
 .meta.cache
 
+venv
+.vscode
+.idea

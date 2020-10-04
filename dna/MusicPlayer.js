@@ -11,16 +11,18 @@ class MusicPlayer {
         augment(this, df)
         augment(this, st)
         this.lvl = st.lvl || "lvl1";
-        this.beatTimer = new lib.BeatTimer(this.lvl);
-        this.offsetBeatTimer = new lib.BeatTimer(this.lvl);
     }
 
     onSpawn() {
+        this.beatTimer = new lib.BeatTimer({lvl: this.lvl, record: _$.planet.isRecording()});
+        this.offsetBeatTimer = new lib.BeatTimer({lvl: this.lvl, record: _$.planet.isRecording()});
     }
     
     evo(dt) {
         if (this.offsetBeatTimer.evo(dt)){
-            trap("spawnObstacle");
+            if (!_$.planet.isRecording()){
+                trap("spawnObstacle");
+            }
         }
 
         if (this.offsetBeatTimer.timer >= env.tune.spawnOffset - env.tune.musicOffset){
@@ -31,7 +33,7 @@ class MusicPlayer {
                 res.sfx[this.lvl].volume = env.sfxVolume || .7
                 res.sfx[this.lvl].play();
                 this.started = true;
-            } 
+            }
         }
     }
 
