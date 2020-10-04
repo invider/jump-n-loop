@@ -7,7 +7,7 @@ const tune = {
 
     rotationSpeed: TAU / 10,
     spawnOffset: 3,
-    musicOffset: 0.2,
+    musicOffset: 0.1,
 
     hits: {
         easy: 15,

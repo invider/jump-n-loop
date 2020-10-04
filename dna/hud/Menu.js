@@ -98,7 +98,7 @@ class Menu {
         } else {
             // landed
             if (this.onMove) this.onMove(item)
-            sfx('select', env.mixer.level.select)
+            sfx('sfx/select', env.mixer.select)
         }
         
     }
@@ -114,7 +114,7 @@ class Menu {
         } else {
             // landed
             if (this.onMove) this.onMove(item)
-            sfx('select', env.mixer.level.select)
+            sfx('sfx/select', env.mixer.select)
         }
     }
 
@@ -134,7 +134,7 @@ class Menu {
             if (item.onSwitch) item.onSwitch(item, this.current)
             else if (this.onSwitch) this.onSwitch(item, this.current)
             if (item.sync) item.sync()
-            sfx('apply', env.mixer.level.switch)
+            sfx('sfx/apply', env.mixer.switch)
 
         } else if (isOption(item)) {
             item.current --
@@ -149,7 +149,7 @@ class Menu {
             if (item.onSwitch) item.onSwitch(item, this.current)
             else if (this.onSwitch) this.onSwitch(item, this.current)
             if (item.sync) item.sync()
-            sfx('apply', env.mixer.level.switch)
+            sfx('sfx/apply', env.mixer.switch)
         }
         if (this.onMove) this.onMove(item)
     }
@@ -170,7 +170,7 @@ class Menu {
             if (item.onSwitch) item.onSwitch(item, this.current)
             else if (this.onSwitch) this.onSwitch(item, this.current)
             if (item.sync) item.sync()
-            sfx('apply', env.mixer.level.switch)
+            sfx('sfx/apply', env.mixer.switch)
 
         } else if (isOption(item)) {
             item.current ++
@@ -185,7 +185,7 @@ class Menu {
             if (item.onSwitch) item.onSwitch(item, this.current)
             else if (this.onSwitch) this.onSwitch(item, this.current)
             if (item.sync) item.sync()
-            sfx('apply', env.mixer.level.switch)
+            sfx('sfx/apply', env.mixer.switch)
         }
         if (this.onMove) this.onMove(item)
     }
@@ -197,10 +197,10 @@ class Menu {
         } else {
             if (item.onSelect) {
                 item.onSelect(this)
-                sfx('use', env.mixer.level.apply)
+                sfx('sfx/use', env.mixer.apply)
             } else if (this.onSelect) {
                 this.onSelect(item)
-                sfx('use', env.mixer.level.apply)
+                sfx('sfx/use', env.mixer.apply)
             }
         }
     }
@@ -209,7 +209,7 @@ class Menu {
         if (this.onBack) {
             this.onBack( this.currentItem() )
         }
-        sfx('noisy', env.mixer.level.apply)
+        sfx('sfx/noisy', env.mixer.level.apply)
     }
 
     activate(action) {

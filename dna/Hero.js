@@ -31,17 +31,19 @@ class Hero {
         planet.attach(this)
     }
 
-    jump(h) {
+    jump(h, controled) {
         if (this.jumps > 2) return
         if (this.jumps > 0) h = h/2
         this.h += h
         this.jumps ++
         lab.musicPlayer.beatTimer.record();
+
+        if (controled) sfx(res.sfx.jump, env.mixer.jump)
     }
 
     activate(id) {
         switch(id) {
-            case 1: this.jump(env.tune.jump); break; 
+            case 1: this.jump(env.tune.jump, true); break; 
         }
     }
 
@@ -69,6 +71,7 @@ class Hero {
             this.__.surfaceColor, .5)
         lib.vfx.touchdown(lab.cam, this.x - this.w/2, this.y,
             this.__.surfaceColor, .3)
+        sfx(res.sfx.touchdown, env.mixer.touchdown)
     }
 
     updateTarget() {
