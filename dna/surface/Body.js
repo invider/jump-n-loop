@@ -21,7 +21,7 @@ class Body {
     init() {
         const r = this.__.r
         const a = 0
-        const emitter = lib.vfx.implosion(lab.cam.planet,
+        const emitter = lib.vfx.implosion(this.__,
             cos(a) * r,
             sin(a) * r,
             this.color)
@@ -75,7 +75,7 @@ class Body {
 
         const r = planet.r
         const a = 0
-        const emitter = lib.vfx.blowup(lab.cam.planet,
+        const emitter = lib.vfx.blowup(this.__,
             cos(a) * r,
             sin(a) * r,
             this.color)

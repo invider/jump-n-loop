@@ -29,6 +29,7 @@ class Hero {
         this.h = 0
         this.__.detach(this)
         planet.attach(this)
+        _$.planet = planet
     }
 
     jump(h, controled) {
@@ -116,6 +117,11 @@ class Hero {
         rect(-this.w/2, 0, this.w, 35)
 
         restore()
+    }
+
+    teleport() {
+        lib.vfx.teleport(lab.cam, this.x, this.y, this.color)
+        sfx(res.sfx.teleport, env.mixer.teleport)
     }
 
     kill() {

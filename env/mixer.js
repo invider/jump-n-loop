@@ -5,6 +5,7 @@ const mixer = {
     touchdown:  1,
     hit:        1,
     die:        1,
+    teleport:   1,
 
     switch:    .7,
     apply:     .6,

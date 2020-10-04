@@ -15,6 +15,7 @@ class Planet extends sys.LabFrame {
 
     constructor(st) {
         super()
+        this.name = 'planet' + (++id)
         augment(this, df)
         augment(this, st)
         this.rotationSpeed = env.tune.rotationSpeed;

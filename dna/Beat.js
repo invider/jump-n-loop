@@ -1,7 +1,7 @@
 // default values
 const df = {
-    x: rx(.06),
-    y: rx(.06),
+    x: rx(.03),
+    y: rx(.03),
     r: ry(.01),
     lifetime:0
 }
