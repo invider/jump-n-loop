@@ -15,6 +15,7 @@ class MusicPlayer {
         augment(this, df)
         augment(this, st)
         this.lvl = st.lvl || "lvl1";
+        this.beat = res.sfx[this.lvl]
     }
 
     onSpawn() {
@@ -31,7 +32,7 @@ class MusicPlayer {
 
     start() {
         // start the beat
-        const beat = res.sfx[this.lvl] || res.sfx.lvl1
+        const beat = this.beat
         beat.volume = env.sfxVolume || .7
         beat.pause()
         beat.currentTime = 0
@@ -48,27 +49,17 @@ class MusicPlayer {
         }
 
         if (this.status < STOPED && this.offsetBeatTimer.timer >= env.tune.spawnOffset - env.tune.musicOffset){
+
+            if (this.status === WAITING) this.start()
+
             if (this.beatTimer.evo(dt)){
                 trap("beat");
             }
 
-            if (this.status === WAITING) this.start()
-            /*
-            if (!this.started){
-                // start the beat
-                const beat = res.sfx[this.lvl] || res.sfx.lvl1
-                beat.volume = env.sfxVolume || .7
-                beat.pause()
-                beat.currentTime = 0
-                beat.play();
-                this.beat = beat
-                this.started = true;
+            if (this.beat.currentTime === this.beat.duration) {
+                this.stop()
+                trap('levelComplete')
             }
-            */
         }
-    }
-
-    draw() {
-        
     }
 }
