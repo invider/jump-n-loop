@@ -61,7 +61,7 @@ class Planet extends sys.LabFrame {
         // planet surface
         lineWidth(this.surfaceWidth)
         stroke(this.surfaceColor)
-        circle(0, 0, this.r)
+        circle(0, 0, this.r - this.surfaceWidth/2)
 
         // axes
         line(0, this.r, 0, this.r + 16)
