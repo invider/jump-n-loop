@@ -3,9 +3,10 @@ const df = {
     h: 0,
     angleWidth: .02,
     bodyHeight: 10,
+    color: hsl(.01, .5, .5),
 
-    // ttl: 3.3, // just after touch
-    ttl: 6.5,
+    ttl: 6,
+    //ttl: 3.3, // just after touch
 }
 
 class Body {
@@ -13,6 +14,7 @@ class Body {
     constructor(st) {
         augment(this, df)
         augment(this, st)
+        this.ttl = this.ttl + rnd() // add some variety
     }
 
     touch(hero) {
@@ -28,7 +30,7 @@ class Body {
     evo(dt) {
         this.ttl -= dt
         if (this.ttl < 0){
-            defer(() => this.__.detach(this))
+            this.kill()
         }
     }
 
@@ -38,9 +40,32 @@ class Body {
         translate(0, this.__.r + this.h)
 
         lineWidth(2)
-        fill(.01, .5, .5)
+        fill(this.color)
         triangle(0, 15, -7, 0, 7, 0)
 
         restore()
+    }
+
+    kill() {
+        const planet = this.__
+        const body = this
+
+        defer(() => planet.detach(body))
+
+        const r = planet.r
+        const a = 0
+        const emitter = lib.vfx.blowup(lab.cam.planet,
+            cos(a) * r,
+            sin(a) * r,
+            this.color)
+
+        const ea = this.angle + PI/2
+        const edraw = emitter.draw
+        emitter.draw = function() {
+            save()
+            rotate(ea)
+            edraw.apply(this)
+            restore()
+        }
     }
 }
