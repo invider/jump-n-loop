@@ -1,6 +1,8 @@
 const mixer = {
-    jump:  1,
+    jump:       1,
     touchdown:  1,
+    hit:        1,
+    die:        1,
 
     switch:    .7,
     apply:     .6,

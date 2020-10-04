@@ -7,7 +7,7 @@ class MusicPlayer {
 
     constructor(st) {
         st = st || {};
-        this.started = 0;
+        this.started = false;
         this.name = "musicPlayer";
         augment(this, df)
         augment(this, st)
@@ -23,7 +23,18 @@ class MusicPlayer {
         if (!this.beat) return
         this.beat.pause()
         this.beat.currentTime = 0
-        this.started = false
+        //this.started = false
+    }
+
+    start() {
+        // start the beat
+        const beat = res.sfx[this.lvl] || res.sfx.lvl1
+        beat.volume = env.sfxVolume || .7
+        beat.pause()
+        beat.currentTime = 0
+        beat.play();
+        this.beat = beat
+        this.started = true;
     }
     
     evo(dt) {
@@ -38,6 +49,8 @@ class MusicPlayer {
                 trap("beat");
             }
 
+            if (!this.started) this.start()
+            /*
             if (!this.started){
                 // start the beat
                 const beat = res.sfx[this.lvl] || res.sfx.lvl1
@@ -48,6 +61,7 @@ class MusicPlayer {
                 this.beat = beat
                 this.started = true;
             }
+            */
         }
     }
 

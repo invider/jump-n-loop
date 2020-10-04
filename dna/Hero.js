@@ -60,7 +60,7 @@ class Hero {
             this.jump(env.tune.hitJump)
             this.updateTarget()
             //lib.vfx.jet(lab.cam, this.x, this.y, hsl(.55, .5, .5))
-            // TODO play hit sfx
+            sfx(res.sfx.scratch, env.mixer.hit)
         }
     }
 
@@ -123,6 +123,7 @@ class Hero {
         const hero = this
         defer(() => hero.__.detach(hero))
         lib.vfx.death(lab.cam, this.x, this.y, this.blood)
+        sfx(res.sfx.destiny, env.mixer.die)
 
         trap('gameOver')
     }
