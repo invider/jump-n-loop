@@ -3,7 +3,10 @@ const df = {
     x: rx(.5),
     y: ry(.5),
     r: ry(.1),
-    angle: 0
+    angle: 0,
+    color: hsl(.4, .3, .4),
+    surfaceWidth: 4,
+    surfaceColor: hsl(.4, .5, .5),
 }
 
 let id = 0
@@ -51,12 +54,18 @@ class Planet extends sys.LabFrame {
         translate(this.x, this.y)
         rotate(this.angle)
 
-        lineWidth(2)
-        stroke(.52, .5, .5)
+        // planet body
+        fill(this.color)
         circle(0, 0, this.r)
 
+        // planet surface
+        lineWidth(this.surfaceWidth)
+        stroke(this.surfaceColor)
+        circle(0, 0, this.r)
+
+        // axes
         line(0, this.r, 0, this.r + 16)
-        line(0, -this.r, 0, -this.r - 8)
+        //line(0, -this.r, 0, -this.r - 8)
 
         for (let i = 0; i < this._ls.length; i++) {
             const e = this._ls[i]
