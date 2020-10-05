@@ -17,8 +17,8 @@ class MusicPlayer {
     }
 
     onSpawn() {
-        this.beatTimer = new lib.BeatTimer({lvl: this.level.id, recordMode: _$.planet.isRecording()});
-        this.offsetBeatTimer = new lib.BeatTimer({lvl: this.level.id, recordMode: _$.planet.isRecording()});
+        this.beatTimer = new lib.BeatTimer({level: this.level, recordMode: _$.planet.isRecording()});
+        this.offsetBeatTimer = new lib.BeatTimer({level: this.level, recordMode: _$.planet.isRecording()});
     }
 
     stop() {

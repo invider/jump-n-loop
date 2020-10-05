@@ -10,7 +10,9 @@ function collectLevels() {
         l.name = l.name || l.id
         l.track = res.tracks[l.name]
         l.beat = res.beats[l.name]
-        if (!l.track || !l.beat) throw 'broken level #' + i + ' - ' + l.title
+        if (!l.track || (!l.beat && !env.config.record)) {
+            throw 'broken level #' + i + ' - ' + l.title
+        }
         dict[l.id] = l
     })
 }
