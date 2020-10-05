@@ -1,4 +1,7 @@
 {
-    "name": "lifestyle",
-    "title": "Lifestyle"
+    "name": "jets",
+    "title": "Jets",
+    "size": 0.6,
+    "color": "#786c56",
+    "surfaceColor": "#dbb553"
 }

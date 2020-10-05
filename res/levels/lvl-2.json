@@ -1,4 +1,7 @@
 {
-    "name": "moments",
-    "title": "Moments"
+    "name": "oxigen",
+    "title": "Oxigen",
+    "size": 0.35,
+    "color": "#5a7872",
+    "surfaceColor": "#52c4ae"
 }

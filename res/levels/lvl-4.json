@@ -1,4 +1,7 @@
 {
-    "name": "oxigen",
-    "title": "Oxigen"
+    "name": "lifestyle",
+    "title": "Lifestyle",
+    "size": 0.6,
+    "color": "#664b5d",
+    "surfaceColor": "#bf54a8"
 }

@@ -1,4 +1,7 @@
 {
-    "name": "running",
-    "title": "Running"
+    "name": "books",
+    "title": "Old Books",
+    "size": 0.3,
+    "color": "#485e5e",
+    "surfaceColor": "#54bbc7"
 }

@@ -18,7 +18,9 @@ function startLevel(opt) {
         x: nx,
         y: ny,
         //r: ry(.24),
-        r: ry(.4),
+        r: ry(level.size || .4),
+        color: level.color || hsl(.4, .3, .4),
+        surfaceColor: level.surfaceColor ||hsl(.4, .5, .5),
     })
     _$.planet = planet
 
