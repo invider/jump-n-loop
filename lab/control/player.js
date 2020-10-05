@@ -13,6 +13,9 @@ function bindAll(target) {
     for (let i = 0; i < MAX_PLAYERS; i++) {
         targetMap[i] = target
         if (!ctrl[i]) ctrl[i] = []
+        for (let j = 0; j < ctrl[i].length; j++) {
+            ctrl[i][j] = OFF
+        }
     }
 }
 

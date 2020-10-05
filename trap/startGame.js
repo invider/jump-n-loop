@@ -27,5 +27,4 @@ function startGame(options) {
 
     if (_$.musicPlayer) _$.musicPlayer.stop()
     _$.musicPlayer = lab.spawn('MusicPlayer', options)
-
 }

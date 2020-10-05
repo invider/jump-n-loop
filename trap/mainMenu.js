@@ -11,8 +11,18 @@ function mainMenu() {
             {
                 title: 'new game',
                 onSelect: function(menu) {
-                    menu.hide();
-                    trap('startGame', menu.options());
+                    _.disable()
+                    lab.spawn(dna.hud.Transition, {
+                        fadein:  .7,
+                        keep:    .5,
+                        fadeout: .7,
+
+                        onFadeout: function() {
+                            _.enable()
+                            menu.hide();
+                            trap('startGame', menu.options());
+                        }
+                    })
                 }
             },
             //{ section: true, title: 'difficulty' },
@@ -46,6 +56,23 @@ function mainMenu() {
                     const level = floor(env.sfxVolume * 10)
                     this.current = level
                 },
+            },
+            {
+                title: 'credits',
+                onSelect: function(menu) {
+                    _.disable()
+                    lab.spawn(dna.hud.Transition, {
+                        fadein:  .7,
+                        keep:    .5,
+                        fadeout: .7,
+
+                        onFadeout: function() {
+                            _.enable()
+                            menu.hide();
+                            trap('credits');
+                        }
+                    })
+                }
             },
             {
                 option: true,
