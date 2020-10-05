@@ -82,7 +82,8 @@ class Hero {
         if (this.landed) {
             const p = this.__
             const a = p.angle + this.angle + PI/2
-            const r = p.r - ry(.2)
+            const r = p.r - ry(.2) / lab.cam.scale
+
             const h = this.h
             this.target.x = p.x + cos(a) * r
             this.target.y = p.y + sin(a) * r

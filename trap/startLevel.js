@@ -24,7 +24,7 @@ function startLevel(opt) {
 
     hero.hits = env.tune.hits[env.options.difficulty]
     hero.land(planet)
-    lab.cam.target = hero.target
+    lab.cam.follow(hero.target, true)
 
     if (_$.musicPlayer) _$.musicPlayer.stop()
     _$.musicPlayer = lab.spawn('MusicPlayer', opt.levelId)

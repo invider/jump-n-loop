@@ -2,10 +2,12 @@ function startGame(options) {
     env.options = options
 
     const cam = lab.spawn('SlideCamera', {
+        Z: 11,
         name: 'cam',
         speed: ry(.2),
         x: 0,
         y: 0,
+        zoomOnPlusMinus: true,
     })
 
     const hero = lab.spawn('Hero', {
