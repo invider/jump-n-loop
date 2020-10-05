@@ -7,6 +7,7 @@ function handleControl(e) {
 
         case 'KeyP':
             _$.pause()
+            lab.musicPlayer.pause()
             break
 
         case 'Escape':
@@ -22,6 +23,7 @@ function handleControl(e) {
 function keyDown(e) {
     if (_$.paused) {
         _$.resume()
+        lab.musicPlayer.resume()
         return
     }
 

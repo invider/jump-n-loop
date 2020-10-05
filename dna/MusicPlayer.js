@@ -41,6 +41,16 @@ class MusicPlayer {
         this.status = PLAYING
     }
 
+    pause() {
+        this.beat.pause()
+        this.paused = true
+    }
+
+    resume() {
+        this.beat.play()
+        this.paused = false
+    }
+
     downloadBeats() {
         this.beatTimer.download()
     }
