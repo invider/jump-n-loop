@@ -27,7 +27,7 @@ class Credits extends sys.LabFrame {
             speed: -speed,
             txt: res.txt.credits,
             font: env.style.font,
-            color: '#FFFFFF',
+            color: env.style.creditsColor,
         })
 
         const totalTime = (scroll.txt.length * scroll.period) + time
@@ -50,7 +50,6 @@ class Credits extends sys.LabFrame {
     }
 
     activate(id) {
-        log(id)
         switch(id) {
             case 1: this.close(); break;
         }
