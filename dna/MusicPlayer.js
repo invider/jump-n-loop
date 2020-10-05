@@ -13,7 +13,7 @@ class MusicPlayer {
         this.name = "musicPlayer";
         augment(this, df)
         this.lvl = levelId || "lvl1";
-        this.beat = res.sfx[this.lvl]
+        this.beat = res.tracks[this.lvl]
     }
 
     onSpawn() {
