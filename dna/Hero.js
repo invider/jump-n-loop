@@ -1,10 +1,13 @@
+const H = 35
+const W = 20
+
 const df = {
     name: 'hero',
     angle: 0,
     h: 0,
     x: rx(.5),
     y: ry(.5),
-    w: 20,
+    w: W,
     hits: 5,
     jumps: 0,
     color: hsl(.55, .5, .5),
@@ -107,14 +110,37 @@ class Hero {
         this.updateTarget()
     }
 
+    drawEye(x, y) {
+        const w = 6
+        fill('#ffffff')
+        rect(x-w/2, y-w/2, w, w)
+
+        fill('#000000')
+        rect(x-2, y-2, 2, 2)
+    }
+
+    drawBody() {
+        const BY = .25 * H
+        const EY = .8 * H
+
+        fill(this.color)
+        rect(-W/2, BY, W, H-BY)
+
+        this.drawEye(0,     EY)
+        this.drawEye(-W*.5, EY)
+
+        lineWidth(2)
+        stroke(this.color)
+        line(.4*W,  BY, .4*W, 0)
+        line(-.2*W, BY, -.2*W, 0)
+    }
+
     draw() {
         save()
         rotate(this.angle)
         translate(0, this.__.r + this.h)
 
-        lineWidth(4)
-        fill(this.color)
-        rect(-this.w/2, 0, this.w, 35)
+        this.drawBody()
 
         restore()
     }
