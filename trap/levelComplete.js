@@ -1,6 +1,7 @@
 function levelComplete() {
-    log('COMPLETE')
+    lab.musicPlayer.downloadBeats()
 
+    // next level
     const hero = _$.hero
     const planet = _$.planet
 

@@ -40,12 +40,14 @@ class MusicPlayer {
         this.beat = beat
         this.status = PLAYING
     }
+
+    downloadBeats() {
+        this.beatTimer.download()
+    }
     
     evo(dt) {
         if (this.status < STOPED && this.offsetBeatTimer.evo(dt)){
-            if (!_$.planet.isRecording()){
-                trap("spawnObstacle");
-            }
+            trap("spawnObstacle");
         }
 
         if (this.status < STOPED && this.offsetBeatTimer.timer >= env.tune.spawnOffset - env.tune.musicOffset){

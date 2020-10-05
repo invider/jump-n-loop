@@ -26,13 +26,6 @@ function mainMenu() {
             },
             {
                 option: true,
-                title: 'mode',
-                id: 'mode',
-                options: [ 'play', 'record' ],
-                limit: true
-            },
-            {
-                option: true,
                 title: 'level',
                 id: 'lvl',
                 options: [ 'lvl1', 'lvl2', 'lvl3' ],
@@ -52,6 +45,22 @@ function mainMenu() {
                     env.sfxVolume = env.sfxVolume || env.tune.defaultVolume
                     const level = floor(env.sfxVolume * 10)
                     this.current = level
+                },
+            },
+            {
+                option: true,
+                title: 'mode',
+                id: 'mode',
+                options: [ 'play', 'record' ],
+                limit: true,
+
+                syncIn: function() {
+                    if (env.config.record) {
+                        this.current = 1
+                    } else {
+                        this.hidden = true
+                        this.disabled = true
+                    }
                 },
             },
         ],

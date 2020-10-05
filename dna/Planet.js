@@ -40,7 +40,7 @@ class Planet extends sys.LabFrame {
         }
     }
     isRecording(){
-        return this.options.mode == "record";
+        return env.config.record && this.options.mode == "record"
     }
     evo(dt) {
         this.angle = lib.math.normalizeAngle(this.angle - this.rotationSpeed * dt)

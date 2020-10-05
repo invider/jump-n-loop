@@ -263,6 +263,7 @@ class Menu {
                 if (item.disabled) disabled = true
                 item = '< ' + item[item.current] + ' >'
             } else if (isObj(item)) {
+                if (item.hidden) hidden = true
                 if (item.section) {
                     active = false
                     item = item.title

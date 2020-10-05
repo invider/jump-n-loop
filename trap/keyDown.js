@@ -1,8 +1,10 @@
 function handleControl(e) {
     switch(e.code) {
+
         case 'KeyY':
-            lib.util.downloadJSON("lvl.json", lab.musicPlayer.beatTimer.recordedBeats);
-            break;
+            lab.musicPlayer.downloadBeats()
+            break
+
         case 'KeyP':
             _$.pause()
             break
