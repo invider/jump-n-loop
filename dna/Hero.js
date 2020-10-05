@@ -8,6 +8,7 @@ const df = {
     x: rx(.5),
     y: ry(.5),
     w: W,
+    timer: 0,
     hits: 5,
     jumps: 0,
     color: hsl(.55, .5, .5),
@@ -96,6 +97,7 @@ class Hero {
     }
 
     evo(dt) {
+        this.timer += dt
         this.angle = lib.math.normalizeAngle(
             this.angle + this.__.rotationSpeed * dt)
 
@@ -121,6 +123,8 @@ class Hero {
     }
 
     drawBody() {
+        const period = (this.timer*2) % 1
+
         const BY = .25 * H
         const EY = .8 * H
 
@@ -132,8 +136,11 @@ class Hero {
 
         lineWidth(2)
         stroke(this.color)
-        line(.4*W,  BY, .4*W, 0)
-        line(-.2*W, BY, -.2*W, 0)
+
+        const leftY = period < .5? 0 : BY/2
+        const rightY = period < .5? BY/2 : 0
+        line(.4*W,  BY, .4*W, leftY)
+        line(-.2*W, BY, -.2*W, rightY)
     }
 
     draw() {
