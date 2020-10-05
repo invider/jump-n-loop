@@ -2,6 +2,11 @@ function startLevel(opt) {
     const level = res.levels.dict[opt.levelId] || res.levels.lvl[0]
     env.level = level
     log(`Starting #${level.index} - ${level.title}`)
+    lab.spawn('hud/LevelTitle', {
+        title: level.title,
+        x: rx(.5),
+        y: ry(.12),
+    })
 
     const hero = _$.hero
     let planet = _$.planet
