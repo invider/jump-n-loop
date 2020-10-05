@@ -17,6 +17,7 @@ class Credits extends sys.LabFrame {
 
         const scroll = this.spawn('text/scroll', {
             name: 'scroll',
+            layer: this,
             rx: 50,
             ry: 80,
             period: 1.7,
@@ -59,8 +60,9 @@ class Credits extends sys.LabFrame {
         const credits = this
 
         _.disable()
+        lab.control.player.unbindAll()
         lab.spawn(dna.hud.Transition, {
-            fadein: 0,
+            fadein: 1,
             keep: .5,
             fadeout: 1,
 

@@ -28,8 +28,10 @@ class Menu {
         augment(this, st)
 
         this.color = {
-            main: hsl(.15, 0, 1),
-            acolor: hsl(.12, .5, .5),
+            main: env.style.neutralColor,
+            acolor: env.style.activeColor,
+            //main: hsl(.15, 0, 1),
+            //acolor: hsl(.12, .5, .5),
 
             bcolor: hsl(.01, .2, .2),
             dcolor: hsl(.1,  .5, .6),
