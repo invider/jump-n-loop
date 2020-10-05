@@ -1,26 +1,12 @@
 function levelComplete() {
     lab.musicPlayer.downloadBeats()
 
-    // next level
-    const hero = _$.hero
-    const planet = _$.planet
-
-    const nx = planet.x + rx(1)
-    const ny = planet.y - ry(.5)
-    const options = planet.options
-
-    const newPlanet = lab.cam.spawn('Planet', {
-        x: nx,
-        y: ny,
-        r: ry(.4),
-        options: options,
+    let next = env.level.index + 1
+    if (next >= res.levels.lvl.length) next = 0
+    
+    const nextLevel = res.levels.lvl[next] || res.levels.lvl[0]
+    trap('startLevel', {
+        levelId: nextLevel.id,
+        jump: true,
     })
-
-    hero.hits = env.tune.hits[options.difficulty]
-    hero.teleport()
-    hero.land(newPlanet)
-    lab.cam.target = hero.target
-
-    if (_$.musicPlayer) _$.musicPlayer.stop()
-    _$.musicPlayer = lab.spawn('MusicPlayer', options)
 }

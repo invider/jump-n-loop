@@ -1,13 +1,13 @@
 function collectLevels() {
-    const map = {
-        name: 'map',
+    const dict = {
+        name: 'dict',
     }
-    res.levels.attach(map)
+    res.levels.attach(dict)
 
     res.levels.lvl.forEach((l, i) => {
         l.id = l.id || 'lvl' + i
         l.index = i
-        map[l.id] = l
+        dict[l.id] = l
     })
 }
 

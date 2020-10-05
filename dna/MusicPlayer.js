@@ -8,13 +8,11 @@ const df = {
 
 class MusicPlayer {
 
-    constructor(st) {
-        st = st || {};
+    constructor(levelId) {
         this.status = WAITING;
         this.name = "musicPlayer";
         augment(this, df)
-        augment(this, st)
-        this.lvl = st.lvl || "lvl1";
+        this.lvl = levelId || "lvl1";
         this.beat = res.sfx[this.lvl]
     }
 
