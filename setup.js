@@ -13,6 +13,7 @@ function collectLevels() {
 
 function setup() {
 
+    lib.util.hideCursor()
     collectLevels()
 
     _.disable()
