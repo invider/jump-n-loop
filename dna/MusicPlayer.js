@@ -8,17 +8,17 @@ const df = {
 
 class MusicPlayer {
 
-    constructor(levelId) {
+    constructor(level) {
         this.status = WAITING;
         this.name = "musicPlayer";
         augment(this, df)
-        this.lvl = levelId || "lvl1";
-        this.beat = res.tracks[this.lvl]
+        this.level = level
+        this.beat = level.track
     }
 
     onSpawn() {
-        this.beatTimer = new lib.BeatTimer({lvl: this.lvl, recordMode: _$.planet.isRecording()});
-        this.offsetBeatTimer = new lib.BeatTimer({lvl: this.lvl, recordMode: _$.planet.isRecording()});
+        this.beatTimer = new lib.BeatTimer({lvl: this.level.id, recordMode: _$.planet.isRecording()});
+        this.offsetBeatTimer = new lib.BeatTimer({lvl: this.level.id, recordMode: _$.planet.isRecording()});
     }
 
     stop() {

@@ -27,5 +27,5 @@ function startLevel(opt) {
     lab.cam.follow(hero.target, true)
 
     if (_$.musicPlayer) _$.musicPlayer.stop()
-    _$.musicPlayer = lab.spawn('MusicPlayer', opt.levelId)
+    _$.musicPlayer = lab.spawn('MusicPlayer', level)
 }
