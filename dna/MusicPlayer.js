@@ -72,4 +72,18 @@ class MusicPlayer {
             }
         }
     }
+
+    draw() {
+        if (this.status === PLAYING) {
+            const left = this.beat.duration - this.beat.currentTime
+            const min = floor(left/60)
+            const sec = floor(left%60)
+            const time = `${min}:${sec}`
+
+            baseBottom()
+            alignRight()
+            fill('#ffffff')
+            text(time, rx(1) - 10, ry(1) - 10)
+        }
+    }
 }
