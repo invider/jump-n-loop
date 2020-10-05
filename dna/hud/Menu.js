@@ -11,6 +11,7 @@ const df = {
     current: 0,
     border: 2,
     IDLE: 20,
+    shadow: true,
 }
 
 function isSwitch(item) {
@@ -281,6 +282,11 @@ class Menu {
                 //if (i === this.current) fill(this.color.bacolor)
                 //else fill(this.color.bcolor)
                 //rect(rx+b, y-1, rw-2*b, this.step-2)
+
+                if (this.shadow) {
+                    fill('#000000')
+                    text(item, x+2, y+2)
+                }
 
                 if (!active) fill(this.color.scolor)
                 else if (disabled) fill(this.color.dcolor)
