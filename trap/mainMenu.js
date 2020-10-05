@@ -1,10 +1,18 @@
 function mainMenu() {
     const menu = lab.spawn('hud/Menu', {})
 
-    let levels = []
+    const soundLevels = []
     for (let i = 0; i <= 10; i++) {
-        levels.push((i * 10) + '%')
+        soundLevels.push((i * 10) + '%')
     }
+
+    const levelIds = []
+    const levelTitles = []
+
+    res.levels.lvl.forEach((l, i) => {
+        levelIds.push(l.id)
+        levelTitles.push(`${i} - ${l.title}`)
+    })
 
     menu.selectFrom({
         items: [
@@ -38,14 +46,16 @@ function mainMenu() {
                 option: true,
                 title: 'level',
                 id: 'lvl',
-                options: [ 'lvl1', 'lvl2', 'lvl3' ],
+                //options: [ 'lvl1', 'lvl2', 'lvl3' ],
+                options: levelTitles,
+                values: levelIds,
                 limit: true
             },
             {
                 option: true,
                 title: 'volume',
                 id: 'volume',
-                options: levels,
+                options: soundLevels,
                 limit: true,
                 sync: function() {
                     const level = limit(this.current/10, 0, 1)

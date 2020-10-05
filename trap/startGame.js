@@ -1,4 +1,5 @@
 function startGame(options) {
+    console.dir(options)
 
     const cam = lab.spawn('SlideCamera', {
         name: 'cam',

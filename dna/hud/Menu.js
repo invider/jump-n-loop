@@ -310,7 +310,8 @@ class Menu {
             return item[item.current]
         } else if (isObj(item)) {
             if (item.option) {
-                return item.options[item.current]
+                if (item.values) return item.values[item.current]
+                else return item.options[item.current]
             } else {
                 return item.title
             }
