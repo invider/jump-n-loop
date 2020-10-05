@@ -10,9 +10,9 @@ function startLevel(opt) {
 
     const hero = _$.hero
     let planet = _$.planet
-    const nx = planet? planet.x + rx(1) : 0
-    const ny = planet? planet.y - ry(.5) : 0
-    if (planet) hero.teleport()
+    const nx = opt.jump? planet.x + rx(1) : 0
+    const ny = opt.jump? planet.y - ry(.5) : 0
+    if (opt.jump) hero.teleport()
 
     planet = lab.cam.spawn('Planet', {
         x: nx,
