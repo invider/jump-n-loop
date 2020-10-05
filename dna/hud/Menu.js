@@ -237,7 +237,7 @@ class Menu {
 
         alignCenter()
         baseTop()
-        font('32px moon')
+        font(env.style.font)
 
         const b = this.border
         const x = cx
