@@ -8,7 +8,11 @@ function setup() {
         onFadeout: function() {
             _.enable()
             if (env.config.newgame) {
-                trap('startGame')
+                trap('startGame', {
+                    difficulty: "normal",
+                    lvl: "lvl1",
+                    mode: "play",
+                })
             } else {
                 trap('title')
             }
