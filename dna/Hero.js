@@ -1,10 +1,12 @@
 const H = 35
 const W = 20
+const MAX_JUMPS = 1
 
 const df = {
     name: 'hero',
     angle: 0,
     h: 0,
+    dh: 0,
     x: rx(.5),
     y: ry(.5),
     w: W,
@@ -36,14 +38,15 @@ class Hero {
         _$.planet = planet
     }
 
-    jump(h, controled) {
-        if (this.jumps > 2) return
-        if (this.jumps > 0) h = h/2
-        this.h += h
+    jump(h, controlled) {
+        if (this.jumps > MAX_JUMPS) return
+        if (controlled && this.jumps > 0) h = h/2
+        //this.h += h
+        this.dh = h
         this.jumps ++
         lab.musicPlayer.beatTimer.record();
 
-        if (controled) sfx(res.sfx.jump, env.mixer.jump)
+        if (controlled) sfx(res.sfx.jump, env.mixer.jump)
     }
 
     activate(id) {
@@ -101,6 +104,20 @@ class Hero {
         this.angle = lib.math.normalizeAngle(
             this.angle + this.__.rotationSpeed * dt)
 
+        if (this.dh !== 0) {
+            this.h += this.dh * dt
+            if (this.h < 0) {
+                // touchdown!
+                this.h = 0
+                this.dh = 0
+                this.jumps = 0
+                this.touchdown()
+            } else {
+                // gravity
+                this.dh -= env.tune.gravity * dt
+            }
+        }
+        /*
         // gravity
         if (this.h > 0) {
             this.h = max(this.h - env.tune.gravity * dt, 0)
@@ -109,6 +126,7 @@ class Hero {
                 this.touchdown()
             }
         }
+        */
 
         this.updateTarget()
     }

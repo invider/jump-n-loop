@@ -1,9 +1,9 @@
 const tune = {
     defaultVolume: .7,
 
-    gravity: 160,
-    jump: 60,
-    hitJump: 90,
+    gravity: 4000,
+    jump: 800,
+    hitJump: 1000,
 
     rotationSpeed: TAU / 10,
     spawnOffset: 3,
