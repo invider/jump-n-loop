@@ -5,9 +5,16 @@ class Credits extends sys.LabFrame {
     }
 
     init() {
+        if (lab.cam) {
+            lab.cam.kill()
+            delete _$.hero
+        }
+
         const scroll = this
         lab.control.player.bindAll(scroll)
         setTimeout(() => scroll.roll(), 1000)
+        res.tracks.jets.volume = (env.sfxVolume || .7) * env.mixer.musicLevel
+        res.tracks.jets.play()
     }
 
     roll() {
@@ -66,6 +73,10 @@ class Credits extends sys.LabFrame {
             fadeout: 1,
 
             onFadeout: function() {
+                res.tracks.jets.pause()
+                res.tracks.jets.currentTime = 0
+                sfx(res.sfx.teleport, env.mixer.teleport)
+
                 defer(() => credits.__.detach(credits))
                 _.enable()
                 if (env.config.newgame) {
