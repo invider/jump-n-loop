@@ -70,18 +70,8 @@ function mainMenu() {
             {
                 title: 'credits',
                 onSelect: function(menu) {
+                    trap('credits', () => menu.hide());
                     _.disable()
-                    lab.spawn(dna.hud.Transition, {
-                        fadein:  .7,
-                        keep:    .5,
-                        fadeout: .7,
-
-                        onFadeout: function() {
-                            _.enable()
-                            menu.hide();
-                            trap('credits');
-                        }
-                    })
                 }
             },
             {

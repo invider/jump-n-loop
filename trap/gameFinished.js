@@ -1,0 +1,3 @@
+function gameFinished() {
+    trap('credits')
+}
