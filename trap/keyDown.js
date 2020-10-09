@@ -11,7 +11,8 @@ function handleControl(e) {
             break
 
         case 'Escape':
-            // TODO reset the game?
+            if (_$.hero) _$.hero.kill()
+            trap('gameOver')
             break
 
         case 'F8':
