@@ -1,5 +1,8 @@
 {
     "ignorePaths": [
-        "fix/beat_detector"
+        "dist",
+        "fix/beat_detector",
+        ".*\\.out",
+        ".*\\.pak"
     ]
 }
