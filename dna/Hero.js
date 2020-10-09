@@ -155,8 +155,12 @@ class Hero {
         lineWidth(2)
         stroke(this.color)
 
-        const leftY = period < .5? 0 : BY/2
-        const rightY = period < .5? BY/2 : 0
+        let leftY = 0
+        let rightY = BY/2
+        if (this.h === 0) {
+            leftY = period < .5? 0 : BY/2
+            rightY = period < .5? BY/2 : 0
+        }
         line(.4*W,  BY, .4*W, leftY)
         line(-.2*W, BY, -.2*W, rightY)
     }
