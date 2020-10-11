@@ -104,7 +104,7 @@ class Hero {
         this.angle = lib.math.normalizeAngle(
             this.angle + this.__.rotationSpeed * dt)
 
-        if (this.h > 0) {
+        if (this.dh !== 0 || this.h > 0) {
             this.h += this.dh * dt
             if (this.h < 0) {
                 // touchdown!
