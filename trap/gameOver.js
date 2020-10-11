@@ -1,4 +1,5 @@
 function gameOver() {
     lab.musicPlayer.stop()
-    trap('mainMenu')
+
+    setTimeout(() => trap('mainMenu'), 2000)
 }
