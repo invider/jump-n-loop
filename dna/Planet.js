@@ -67,7 +67,7 @@ class Planet extends sys.LabFrame {
         circle(0, 0, this.r - this.surfaceWidth/2)
 
         // axes
-        line(0, this.r, 0, this.r + 16)
+        //line(0, this.r, 0, this.r + 16)
         //line(0, -this.r, 0, -this.r - 8)
 
         for (let i = 0; i < this._ls.length; i++) {

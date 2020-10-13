@@ -30,4 +30,9 @@ function startLevel(opt) {
 
     if (_$.musicPlayer) _$.musicPlayer.stop()
     _$.musicPlayer = lab.spawn('MusicPlayer', level)
+
+    trap('report', {
+        type: 'levelStart',
+        level: level.index,
+    })
 }

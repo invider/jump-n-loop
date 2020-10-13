@@ -1,0 +1,6 @@
+#!/bin/sh
+
+jam clean
+rm trap/telco.js
+rm trap/telcoSession.js
+

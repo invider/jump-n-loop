@@ -12,6 +12,10 @@ dist*
 *.pid
 .meta.cache
 
+# telco
+trap/telco.js
+trap/telcoSession.js
+
 venv
 .vscode
 .idea

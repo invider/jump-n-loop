@@ -41,4 +41,6 @@ function setup() {
             }
         }
     })
+
+    env.telcoId = 'jump-n-loop'
 }
