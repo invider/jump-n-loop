@@ -1,5 +1,4 @@
 function credits(hide) {
-    log('creddddits')
     lab.spawn(dna.hud.Transition, {
         fadein:  .7,
         keep:    .5,

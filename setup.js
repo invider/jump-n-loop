@@ -21,6 +21,7 @@ function setup() {
 
     lib.util.hideCursor()
     collectLevels()
+    env.telcoId = 'jump-n-loop'
 
     _.disable()
     lab.spawn(dna.hud.Transition, {
@@ -36,11 +37,11 @@ function setup() {
                     lvl: "lvl1",
                     mode: "play",
                 })
+
             } else {
                 trap('title')
+                trap('telcoSession')
             }
         }
     })
-
-    env.telcoId = 'jump-n-loop'
 }
